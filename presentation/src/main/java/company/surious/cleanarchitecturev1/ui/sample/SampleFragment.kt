@@ -42,10 +42,12 @@ class SampleFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
         sampleViewModel = ViewModelProvider(this, viewModelFactory)[SampleViewModel::class.java]
         binding.sampleViewModel = sampleViewModel
+        binding.eventHandler = SampleEventHandler()
     }
 
-    override fun onStart() {
-        super.onStart()
-        sampleViewModel.update()
+    inner class SampleEventHandler {
+        fun onUpdateButtonClicked() {
+            sampleViewModel.update()
+        }
     }
 }

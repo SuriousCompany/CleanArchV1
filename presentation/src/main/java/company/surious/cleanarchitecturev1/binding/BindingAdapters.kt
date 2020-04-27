@@ -36,6 +36,14 @@ fun setDataOrErrorState(view: View, uiState: UiState) {
     }
 }
 
+@BindingAdapter("notLoadingState")
+fun notLoadingState(view: View, uiState: UiState) {
+    view.visibility = when (uiState) {
+        Loading -> View.INVISIBLE
+        else -> View.VISIBLE
+    }
+}
+
 @BindingConversion
 fun convertBooleanToVisibility(visible: Boolean) =
     if (visible) {
